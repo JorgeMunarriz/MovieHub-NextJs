@@ -94,13 +94,14 @@ export const deleteMovie = async (endpoint: string,) => {
   }
 };
 export const getMovieById = async (url: string) => {
-  const {accessToken} = await getAccessToken();
-console.log(accessToken)
+  const token = await getAccessToken();
+  console.log(token.accessToken)
+
   
     const response = await fetch(url, {
       method: "GET",
       headers: {
-        authorization: `Bearer ${accessToken}`,
+        authorization: `Bearer ${token.accessToken}`,
       },
     });
    

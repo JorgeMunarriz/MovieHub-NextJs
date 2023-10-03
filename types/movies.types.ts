@@ -20,6 +20,7 @@ export interface UserTypes {
     updatedAt: string;
     users?: UserTypes;
     isLiked: boolean;
+    public: boolean;
   }
   
   export interface GenreType {

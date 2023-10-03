@@ -1,4 +1,4 @@
-import {handleAuth, handleLogin} from '@auth0/nextjs-auth0';
+import {handleAuth, handleLogin, handleLogout} from '@auth0/nextjs-auth0';
 
 export const GET = handleAuth({
     login: handleLogin({
@@ -7,5 +7,8 @@ export const GET = handleAuth({
             audience: 'http://localhost:3005', // or YOUR AUTH0_AUDIENCE
             // IS CRUCIAL FOR THE CORRECT FUNCTIONING OF THE AUTH0 TOKEN
         },
+    }),
+    logout: handleLogout({
+        returnTo: "/"
     })
 });

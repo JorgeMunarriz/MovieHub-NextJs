@@ -10,7 +10,6 @@ async function Home() {
   
 
   const movies = await getDataApiPublicMovies();
-  console.log(movies)
 
   return (
     <div className={styles.homePage}>
@@ -21,7 +20,7 @@ async function Home() {
         <div className={styles.cardContainer}>
           {movies.map(
             (movie) => (
-              <Suspense fallback={<div>Loading </div>}>
+              <Suspense fallback={<SkeletonCards/>}>
                 <Cards
                   id={movie.id}
                   title={movie.title}
@@ -37,6 +36,7 @@ async function Home() {
                   updatedAt={movie.updatedAt}
                   users={movie.users}
                   isLiked={movie.isLiked}
+                  public={true}
                 />
 
               </Suspense>
