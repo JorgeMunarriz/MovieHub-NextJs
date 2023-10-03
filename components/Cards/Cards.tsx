@@ -4,19 +4,19 @@ import ModalUpdateMovie from "@/components/ModalUpdateMovie/ModalUpdateMovie";
 import ModalDeleteMovie from "@/components/ModalDeleteMovie/ModalDeleteMovie";
 import styles from "./card.module.css";
 import LikeButton from "../LikeButton/LikeButton";
-import { useUser } from "@auth0/nextjs-auth0/client";
 
 const Cards = ({ ...props }: MoviesType) => {
-  const { user } = useUser();
-  const isPublicMovie = props.public === true
+  const isPublicMovie = props.public === true;
 
   return (
     <div className={styles.card}>
       <div className={styles.card__header}>
+        {!isPublicMovie && (
+          <div className={styles.card__header_divHeart}>
+            <LikeButton id={props.id} isLiked={props.isLiked} />
+          </div>
+        )}
         <img className={styles.card__header_img} src={props.imageUrl} alt={props.title} />
-        <div className={styles.card__header_divHeart}>
-          <LikeButton id={props.id} isLiked={props.isLiked} />
-        </div>
       </div>
       <div className={styles.card__main}>
         <p className={styles.card__main_country}>
@@ -36,11 +36,11 @@ const Cards = ({ ...props }: MoviesType) => {
             </ul>
           </h3>
         </div>
-          {!isPublicMovie && (
-        <div className={styles.card__footer}>
-          <a className={styles.card__footer_detailsLink} href={`/private/movie/${props.id}`}>
-            Details
-          </a>
+        {!isPublicMovie && (
+          <div className={styles.card__footer}>
+            <a className={styles.card__footer_detailsLink} href={`/movie/${props.id}`}>
+              Details
+            </a>
             <div className={styles.card__footer_div}>
               <ModalDeleteMovie key={props.id} {...props} />
               <ModalUpdateMovie
@@ -58,11 +58,12 @@ const Cards = ({ ...props }: MoviesType) => {
                 imageId={props.imageId}
                 imageUrl={props.imageUrl}
                 isLiked={props.isLiked}
+                description={props.description}
                 public={false}
               />
             </div>
-        </div>
-          )}
+          </div>
+        )}
       </div>
     </div>
   );

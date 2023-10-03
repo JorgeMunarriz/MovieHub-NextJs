@@ -37,6 +37,7 @@ async function Home() {
                   users={movie.users}
                   isLiked={movie.isLiked}
                   public={true}
+                  description={movie.description}
                 />
 
               </Suspense>

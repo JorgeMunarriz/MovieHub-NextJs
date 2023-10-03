@@ -75,10 +75,15 @@
 .movie .movieDetails__main-titleMovie-divHeart-button svg path:hover {
   color: rgb(210, 55, 55);
 }
-.movie .movieDetails__main-country {
+.movie .movieDetails__main_country {
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.6);
+}
+.movie .movieDetails__main_country_span {
+  margin-left: 1vw;
   font-size: 2rem;
   color: rgba(250, 250, 250, 0.6);
 }
@@ -86,6 +91,11 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  font-size: 2rem;
+  color: rgba(250, 250, 250, 0.7);
+}
+.movie .movieDetails__main-scoreMovie-span {
+  margin-left: 1vw;
   font-size: 2rem;
   color: rgba(250, 250, 250, 0.4);
 }
@@ -95,24 +105,24 @@
   height: 40px;
   margin-left: 10px;
 }
-.movie .movieDetails__main-div {
+.movie .movieDetails__main-genresMovie {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: flex-start;
   font-size: 2rem;
 }
-.movie .movieDetails__main-div-genreTitle {
+.movie .movieDetails__main-genresMovie-title {
   display: flex;
   justify-content: flex-start;
   font-size: 2rem;
   color: rgba(250, 250, 250, 0.7);
 }
-.movie .movieDetails__main-div-ul {
+.movie .movieDetails__main-genresMovie-ul {
   display: flex;
-  margin-right: 1vw;
+  margin-left: 1vw;
 }
-.movie .movieDetails__main-div-ul-genresList {
+.movie .movieDetails__main-genresMovie-ul-genresList {
   text-decoration: none;
   list-style: none;
   font-size: 2rem;
@@ -120,13 +130,44 @@
 }
 .movie .movieDetails__footer {
   display: flex;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 1rem;
   padding: 1vw;
 }
+.movie .movieDetails__footer_containerButtons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1vw;
+}
+.movie .movieDetails__footer_containerDescription {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+  padding: 1vw;
+  overflow-y: auto;
+}
+.movie .movieDetails__footer_containerDescription_text {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  font-size: 1rem;
+  color: rgba(180, 177, 177, 0.9);
+}
+
 @media (width < 768px) {
-  .movie .movieDetails {
+  .movie {
     flex-direction: column;
+  }
+  .movie .movieDetails__header {
+    width: 100%;
+  }
+  .movie .movieDetails__header-img {
+    width: 100%;
   }
 }
 @keyframes glowing {

@@ -21,10 +21,10 @@ const Header = async () => {
       <div className={styles.header__right}>
         {session ? (
           <div className={styles.header__right_div}>
-            <Link href={"/private/profile"} className={styles.header__right_div_signbtn}>
+            <Link href={"/profile"} className={styles.header__right_div_signbtn}>
               Profile
             </Link>
-            <Link href={"/private/movie"} className={styles.header__right_div_signbtn}>
+            <Link href={"/movie"} className={styles.header__right_div_signbtn}>
               Movie
             </Link>
             <LogOutButton />

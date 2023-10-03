@@ -1,6 +1,4 @@
-
-
-.movie{
+.movie {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -44,7 +42,7 @@
           border-radius: 50%;
           border: none;
           padding: 5px;
-          &::before{
+          &::before {
             content: "";
             position: absolute;
             top: 0;
@@ -65,7 +63,7 @@
             path {
               width: 80%;
               color: rgba(210, 55, 55, 0.7);
-              
+
               z-index: 1;
               transition: all 0.3s ease-in-out;
               &:hover {
@@ -75,19 +73,29 @@
           }
         }
       }
-      &-country {
+      &_country {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         font-size: 2rem;
         color: rgba(250, 250, 250, 0.6);
+        &_span {
+          margin-left: 1vw;
+          font-size: 2rem;
+          color: rgba(250, 250, 250, 0.6);
+        }
       }
       &-scoreMovie {
         display: flex;
         justify-content: flex-start;
         align-items: center;
         font-size: 2rem;
-        color: rgba(250, 250, 250, 0.4);
+        color: rgba(250, 250, 250, 0.7);
+        &-span {
+          margin-left: 1vw;
+          font-size: 2rem;
+          color: rgba(250, 250, 250, 0.4);
+        }
         &-imdbLogo {
           display: block;
           width: 40px;
@@ -95,21 +103,21 @@
           margin-left: 10px;
         }
       }
-      &-div {
+      &-genresMovie {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: flex-start;
         font-size: 2rem;
-        &-genreTitle {
+        &-title {
           display: flex;
           justify-content: flex-start;
           font-size: 2rem;
           color: rgba(250, 250, 250, 0.7);
         }
         &-ul {
-          display: flex; 
-          margin-right: 1vw;
+          display: flex;
+          margin-left: 1vw;
           &-genresList {
             text-decoration: none;
             list-style: none;
@@ -121,25 +129,58 @@
     }
     &__footer {
       display: flex;
-      align-items: center;
-      justify-content: space-around;
-      padding: 1vw;
-    }
-  }
-  @media (width < 768px) {
-    .movieDetails {
       flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 1rem;
+      padding: 1vw;
+      &_containerButtons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 1vw;
+      }
+      &_containerDescription {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 1rem;
+        padding: 1vw;
+        overflow-y: auto;
+        &_text {
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          font-size: 1rem;
+          color: rgba(180, 177, 177, 0.9);
+        }
+      }
     }
   }
-  @keyframes glowing{
-    0% {
-      background-position: 0 0;
+}
+@media (width < 768px) {
+  .movie {
+    flex-direction: column;
+    
+    .movieDetails__header{
+      width: 100%;
+      &-img{
+        width: 100%;
+      }
     }
-    50% {
-      background-position: 400% 0;
-    }
-    100% {
-      background-position: 0 0;
-    }
+
+  }
+  
+}
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
   }
 }

@@ -11,6 +11,7 @@ export interface UserTypes {
     score: number;
     year: number;
     country: string;
+    description: string;
     image: FileList | null;
     imageId: string;
     imageUrl: string;
@@ -42,6 +43,7 @@ export interface UserTypes {
     score: number;
     year: number;
     country: string;
+    description: string
     image: FileList | null;
     imageId: string;
     imageUrl: string;

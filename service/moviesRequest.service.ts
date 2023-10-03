@@ -11,6 +11,7 @@ export const createMovie = async (endpoint: string, data: MovieFormData) => {
   formData.append("year", data.year.toString());
   formData.append("score", data.score.toString());
   formData.append("country", data.country);
+  formData.append("description", data.description);
   if (Array.isArray(data.genres)) {
     for (const genre of data.genres) {
       formData.append("genres", genre);
@@ -46,6 +47,7 @@ export const updateMovie = async (url: string, data: MovieFormData) => {
   formData.append("year", data.year.toString());
   formData.append("score", data.score.toString());
   formData.append("country", data.country);
+  formData.append("description", data.description);
   if (Array.isArray(data.genres)) {
     for (const genre of data.genres) {
       formData.append("genres", genre);

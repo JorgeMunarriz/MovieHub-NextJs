@@ -8,11 +8,17 @@ export const getDataApiMovies = async () => {
     return;
   }
   const { accessToken } = await getAccessToken();
+  console.log(accessToken)
   // console.log(accessToken)
   // const token = accessToken?.toString()
   // console.log(token)
 
-  const response = await fetch(`${NEXT_URL_MOVIES}`, { method: "GET", cache: "no-store", headers: { authorization: `Bearer ${accessToken}` } });
+  const response = await fetch(`${NEXT_URL_MOVIES}`, { 
+    method: "GET", cache: "no-store", 
+    headers: { authorization: `Bearer ${accessToken}` } 
+  
+  });
+  console.log(response)
   return (await response.json()) as MoviesType[];
 };
 

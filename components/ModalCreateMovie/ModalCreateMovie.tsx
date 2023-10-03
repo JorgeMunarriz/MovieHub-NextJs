@@ -19,13 +19,12 @@ const ModalCreateMovie = () => {
     setIsOpen(!modalIsOpen);
   };
   const onsubmit = handleSubmit((data: any) => {
-    if (data.title && data.score && data.year && data.country && data.genres) {
+    if (data.title && data.score && data.year && data.country && data.genres && data.description) {
       const movieData = {
         ...data,
         genres: data.genres.split(",").map((genre: string) => genre.trim()),
       };
       const urlEndpont = `${user?.email}`;
-      console.log(urlEndpont)
       createMovie(urlEndpont, movieData);
       setIsOpen(!modalIsOpen);
     } else {
@@ -57,7 +56,7 @@ const ModalCreateMovie = () => {
                 <label className="form__modal-div-label" htmlFor="formModalTitle">
                   Movie's Name
                 </label>
-                <input className="form__modal-div-input" type="text" id="formModalTitle" placeholder="Iron Man" autoComplete="Movie" {...register("title")} />
+                <input className="form__modal-div-input" type="text" id="formModalTitle" placeholder="Iron Man" {...register("title")} />
               </div>
               <div className="form__modal-div">
                 <label className="form__modal-div-label" htmlFor="formModalScore">
@@ -83,12 +82,18 @@ const ModalCreateMovie = () => {
                 </label>
                 <input className="form__modal-div-input" type="text" id="formModalGenre" placeholder="Action, Adventure..." {...register("genres")} />
               </div>
+              <div className="form__modal-div">
+                <label className="form__modal-div-label" htmlFor="formModalDescription">
+                  Movie's Description
+                </label>
+                <textarea className="form__modal-div-textarea" id="formModalDescription" placeholder="Description" {...register("description")} />
+              </div>
               <div className="form__modal-div-img">
                 {selectedFile && <img className="form__modal-div-img-imgPreview" src={URL.createObjectURL(selectedFile)} alt="Preview" />}
                 <label className="form__modal-div-label-uploadFile" htmlFor="formModalFile">
                   Upload Image
                 </label>
-                <input className="form__modal-div-input" type="file" id="formModalFile" {...register("image")} onChange={handleFileChange} />
+                <input className="form__modal-div-input-img" type="file" id="formModalFile" {...register("image")} onChange={handleFileChange} />
               </div>
               <button className="form__modal-btnAddMovie" type="submit">
                 Add Movie
