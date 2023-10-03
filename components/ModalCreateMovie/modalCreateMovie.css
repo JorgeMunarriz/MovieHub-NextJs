@@ -1,0 +1,104 @@
+.modal {
+  display: flex;
+}
+.modal .modal__btn-open {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 0.5rem;
+  padding: 8px 16px;
+  background-color: rgba(230, 55, 55, 0.6);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.modal .modal__btn-open:hover {
+  background-color: rgba(230, 55, 55, 0.9);
+}
+.modal__container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+.modal__container-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50vw;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+.modal__container-content-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+.modal__container-content .form__modal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  width: 40vw;
+}
+.modal__container-content .form__modal-div {
+  display: flex;
+  flex-direction: column;
+}
+.modal__container-content .form__modal-div-label {
+  font-size: 1rem;
+  color: rgba(50, 50, 50, 0.8);
+}
+.modal__container-content .form__modal-div-label-uploadFile {
+  padding: 15px;
+}
+.modal__container-content .form__modal-div-input {
+  font-size: 1rem;
+  color: rgba(50, 50, 50, 0.8);
+  border-radius: 15px;
+  padding: 5px;
+}
+.modal__container-content .form__modal-div-img {
+  display: flex;
+  flex-direction: row-reverse;
+}
+.modal__container-content .form__modal-div-img-imgPreview {
+  width: 100px;
+}
+.modal__container-content .form__modal-btnAddMovie {
+  margin-top: 10px;
+  width: 200px;
+  padding: 8px 16px;
+  background-color: rgba(0, 123, 250, 0.8);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.modal__container-content .form__modal-btnAddMovie:hover {
+  background-color: rgba(0, 123, 250, 0.6);
+}
+.modal__container-content-button {
+  padding: 8px 16px;
+  width: 200px;
+  background-color: rgba(50, 50, 50, 0.8);
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+}
+.modal__container-content-button:hover {
+  background-color: rgba(50, 50, 50, 0.6);
+}/*# sourceMappingURL=modalCreateMovie.css.map */

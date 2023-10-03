@@ -1,0 +1,28 @@
+.moviesPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  height: 100%;
+}
+
+.moviesPage__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.moviesPage__header_title {
+  color: rgba(250, 250, 250, 0.6);
+}
+
+.moviesPage__cardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  height: 100%;
+  width: 100%;
+}

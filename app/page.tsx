@@ -1,95 +1,53 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
+import styles from "./page.module.css";
+import { getDataApiPublicMovies } from "@/service/dataApiRequest.service";
+import Cards from "@/components/Cards/Cards";
+import { Suspense } from "react";
+import SkeletonCards from "@/components/Skeleton/SkeletonCards";
 
-export default function Home() {
+async function Home() {
+ 
+  
+
+  const movies = await getDataApiPublicMovies();
+  console.log(movies)
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className={styles.homePage}>
+      <div className={styles.homePage__header}>
+        <h2 className={styles.homePage__header_title}>Public List of Movies</h2> 
+      </div>
+      <div className={styles.homePage__main}>
+        <div className={styles.cardContainer}>
+          {movies.map(
+            (movie) => (
+              <Suspense fallback={<div>Loading </div>}>
+                <Cards
+                  id={movie.id}
+                  title={movie.title}
+                  score={movie.score}
+                  year={movie.year}
+                  country={movie.country}
+                  image={movie.image}
+                  imageId={movie.imageId}
+                  imageUrl={movie.imageUrl}
+                  genres={movie.genres}
+                  genresArray={movie.genresArray}
+                  createdAt={movie.createdAt}
+                  updatedAt={movie.updatedAt}
+                  users={movie.users}
+                  isLiked={movie.isLiked}
+                />
+
+              </Suspense>
+            )
+          )}
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div className={styles.homePage__footer}>
+        <button className={styles.mainhomePage__footer_buttonViewMore}>View more</button>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+    </div>
+  );
 }
+export default Home;

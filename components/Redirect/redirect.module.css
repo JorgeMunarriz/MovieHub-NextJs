@@ -1,0 +1,8 @@
+.redirect{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.redirect_title{
+    color: rgba(250, 250, 250, 0.6);
+}
