@@ -1,6 +1,8 @@
 import { NEXT_URL_MOVIES, NEXT_URL_PUBLIC_MOVIES } from "@/global/serverUrl";
 import { MoviesType } from "@/types/movies.types";
 import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
+import next from "next";
+import { revalidateTag } from 'next/cache'
 
 export const getDataApiMovies = async () => {
   const session = await getSession();
@@ -8,17 +10,15 @@ export const getDataApiMovies = async () => {
     return;
   }
   const { accessToken } = await getAccessToken();
-  console.log(accessToken)
-  // console.log(accessToken)
-  // const token = accessToken?.toString()
-  // console.log(token)
+ 
+  
 
   const response = await fetch(`${NEXT_URL_MOVIES}`, { 
     method: "GET", cache: "no-store", 
-    headers: { authorization: `Bearer ${accessToken}` } 
+    headers: { authorization: `Bearer ${accessToken}` } ,
+
   
-  });
-  console.log(response)
+  },);
   return (await response.json()) as MoviesType[];
 };
 

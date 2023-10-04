@@ -10,7 +10,8 @@ async function Home() {
   
 
   const movies = await getDataApiPublicMovies();
-
+  const token = await getAccessToken();
+  console.log(token.accessToken)
   return (
     <div className={styles.homePage}>
       <div className={styles.homePage__header}>
@@ -20,7 +21,7 @@ async function Home() {
         <div className={styles.cardContainer}>
           {movies.map(
             (movie) => (
-              <Suspense fallback={<SkeletonCards/>}>
+              <Suspense key={movie.id} fallback={<SkeletonCards/>}>
                 <Cards
                   id={movie.id}
                   title={movie.title}

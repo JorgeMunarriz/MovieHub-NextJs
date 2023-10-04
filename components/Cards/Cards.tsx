@@ -1,9 +1,10 @@
 "use client";
 import { MoviesType } from "@/types/movies.types";
-import ModalUpdateMovie from "@/components/ModalUpdateMovie/ModalUpdateMovie";
-import ModalDeleteMovie from "@/components/ModalDeleteMovie/ModalDeleteMovie";
+
 import styles from "./card.module.css";
-import LikeButton from "../LikeButton/LikeButton";
+import LikeButton from "../Buttons/LikeButton/LikeButton";
+import ModalDeleteMovie from "../Modals/ModalDeleteMovie/ModalDeleteMovie";
+import ModalUpdateMovie from "../Modals/ModalUpdateMovie/ModalUpdateMovie";
 
 const Cards = ({ ...props }: MoviesType) => {
   const isPublicMovie = props.public === true;

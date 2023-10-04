@@ -2,10 +2,10 @@ import { BsHeartFill } from "react-icons/bs";
 import { getMovieById } from "@/service/moviesRequest.service";
 import { NEXT_URL_MOVIES } from "@/global/serverUrl";
 import "./moviesDetailPage.css";
-import LikeButton from "@/components/LikeButton/LikeButton";
+import LikeButton from "@/components/Buttons/LikeButton/LikeButton";
 import { getSession } from "@auth0/nextjs-auth0";
 import Redirect from "@/components/Redirect/Redirect";
-import ModalUpdateMovie from "@/components/ModalUpdateMovie/ModalUpdateMovie";
+import ModalUpdateMovie from "@/components/Modals/ModalUpdateMovie/ModalUpdateMovie";
 import ModalDeleteMovie from "@/components/ModalDeleteMovie/ModalDeleteMovie";
 
 type Props = {
@@ -31,7 +31,7 @@ const MoviesPageDetail = async ({ params }: Props) => {
         </div>
         <div className="movieDetails__main">
           <p className="movieDetails__main_country">
-          Country: <span className="movieDetails__main_country_span">{movieData.country}, </span> <span className="movieDetails__main_country_span">year: {movieData.year}</span>  
+            Country: <span className="movieDetails__main_country_span">{movieData.country}, </span> <span className="movieDetails__main_country_span">year: {movieData.year}</span>
           </p>
           <h2 className="movieDetails__main-titleMovie">
             {movieData.title}
@@ -41,7 +41,8 @@ const MoviesPageDetail = async ({ params }: Props) => {
           </h2>
 
           <h3 className="movieDetails__main-scoreMovie">
-            Score: <span className="movieDetails__main-scoreMovie-span">{movieData.score}/100 </span> <img className="movieDetails__main-scoreMovie-imdbLogo" src={"/assets/logo/imdb.png"} alt="IMDB-logo" />
+            Score: <span className="movieDetails__main-scoreMovie-span">{movieData.score}/100 </span>{" "}
+            <img className="movieDetails__main-scoreMovie-imdbLogo" src={"/assets/logo/imdb.png"} alt="IMDB-logo" />
           </h3>
           <div className="movieDetails__main-genresMovie">
             <h3 className="movieDetails__main-genresMovie-title">
@@ -60,8 +61,7 @@ const MoviesPageDetail = async ({ params }: Props) => {
             )}
             {session.user && (
               <div className="movieDetails__footer_containerDescription">
-                <p className="movieDetails__footer_containerDescription_text">
-                  Movie's description: {movieData.description}</p>
+                <p className="movieDetails__footer_containerDescription_text">Movie's description: {movieData.description}</p>
               </div>
             )}
           </div>

@@ -6,6 +6,8 @@ import { useUser } from "@auth0/nextjs-auth0/client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./modalCreateMovie.css"
+import { revalidateTag, revalidatePath } from 'next/cache';
+import { useRouter } from 'next/navigation';
 
 
 const ModalCreateMovie = () => {
@@ -13,6 +15,7 @@ const ModalCreateMovie = () => {
   const { user } = useUser();
   const { register, handleSubmit } = useForm();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const router = useRouter()
   
 
   const toggleModal = () => {
@@ -25,7 +28,9 @@ const ModalCreateMovie = () => {
         genres: data.genres.split(",").map((genre: string) => genre.trim()),
       };
       const urlEndpont = `${user?.email}`;
+      console.log(movieData)
       createMovie(urlEndpont, movieData);
+      router.refresh()
       setIsOpen(!modalIsOpen);
     } else {
       console.error("The data does not have the correct structure.");

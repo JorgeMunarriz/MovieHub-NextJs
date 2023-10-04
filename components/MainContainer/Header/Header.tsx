@@ -1,10 +1,8 @@
-
 import Link from "next/link";
-import LogOutButton from "@/components/LogOutButton/LogOutButton";
-import ModalCreateMovie from "@/components/ModalCreateMovie/ModalCreateMovie";
-import styles from './header.module.css'
+import LogOutButton from "@/components/Buttons/LogOutButton/LogOutButton";
+import ModalCreateMovie from "@/components/Modals/ModalCreateMovie/ModalCreateMovie";
+import styles from "./header.module.css";
 import { getSession } from "@auth0/nextjs-auth0";
-
 
 const Header = async () => {
   const session = await getSession();

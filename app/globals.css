@@ -22,6 +22,7 @@ html {
   
 }
 
+
 img, picture, video, canvas, svg {
   display: block;
   max-width: 100%;
@@ -66,6 +67,25 @@ p, h1, h2, h3, h4, h5, h6 {
   height: 100vh;
   background: radial-gradient(circle, rgba(27, 0, 0, 0.903) 0%, rgba(0, 0, 0, 0.635) 76%, rgba(14, 14, 23, 0.594) 89%);
 }
+.light{
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle, rgba(167, 167, 167, 0.903) 0%, rgba(119, 119, 119, 0.635) 76%, rgba(54, 54, 54, 0.594) 89%);
+}
+.dark{
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(10, 1fr);
+  grid-gap: 0;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle, rgba(27, 0, 0, 0.903) 0%, rgba(0, 0, 0, 0.635) 76%, rgba(14, 14, 23, 0.594) 89%);
+}
+
 .main{
   grid-area: 2 /1 / 10 / 11;
   display: flex;

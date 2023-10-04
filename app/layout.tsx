@@ -5,6 +5,7 @@ import Header from "@/components/MainContainer/Header/Header";
 import AuthProvider from "@/components/AuthProvider/AuthProvider";
 import Footer from "@/components/MainContainer/Footer/Footer";
 import { MovieProvider } from "@/context/MovieContext";
+import { ButtonTheme } from "@/components/MainContainer/ButtonTheme/ButtonTheme";
 
 export const metadata: Metadata = {
   title: "Moviehub",
@@ -16,11 +17,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="body">
+    <html lang="en" >
+      <body className="body" id="body">
         <UserProvider>
           <AuthProvider>
             {/* <MovieProvider> */}
+            <ButtonTheme/>
             <Header />
             <main className="main">
             {children}
