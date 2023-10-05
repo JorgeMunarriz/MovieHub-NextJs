@@ -60,7 +60,7 @@ Clone the repository from GitHub:
 
 
 ```bash
-git clone https://github.com/JorgeMunarriz/MovieHub.git
+git clone https://github.com/JorgeMunarriz/MovieHub-NextJs.git
 ```
 
 ```bash
