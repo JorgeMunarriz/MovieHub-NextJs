@@ -3,12 +3,11 @@ import { MovieFormData, MoviesType } from "@/types/movies.types";
 import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
 import { revalidatePath, revalidateTag } from "next/cache";
 
-export const createMovie = async (endpoint: string, data: MovieFormData) => {
+export const createMovie = async (url: string, data: MovieFormData) => {
   // const session = await getSession();
   // if (!session?.user) {
   //   return;
   // }
-  // console.log(session)
   // const {accessToken} = await getAccessToken();
   // console.log(accessToken)
   const formData = new FormData();
@@ -26,17 +25,15 @@ export const createMovie = async (endpoint: string, data: MovieFormData) => {
   if (data.image) {
     formData.append("image", data.image[0]);
   }
-  console.log(formData);
 
   
-  const response = await fetch(`http://localhost:3005/movies/${endpoint}`, {
+  const response = await fetch(url, {
     method: "POST",cache: "no-store",
     // headers: {
     //   authorization: `Bearer ${accessToken}`,
     // },
     body: formData,
   });
-  console.log("formdata", formData);
   if (!response.ok) {
     throw new Error("No response from the server");
   }
@@ -44,10 +41,7 @@ export const createMovie = async (endpoint: string, data: MovieFormData) => {
 };
 
 export const updateMovie = async (url: string, data: MovieFormData) => {
-  // const session = await getSession();
-  // if (!session) {
-  //   return;
-  // }
+  
   // const {accessToken} = await getAccessToken();
   // console.log(accessToken)
   const formData = new FormData();
@@ -56,6 +50,7 @@ export const updateMovie = async (url: string, data: MovieFormData) => {
   formData.append("score", data.score.toString());
   formData.append("country", data.country);
   formData.append("description", data.description);
+
   if (Array.isArray(data.genres)) {
     for (const genre of data.genres) {
       formData.append("genres", genre);
@@ -64,7 +59,7 @@ export const updateMovie = async (url: string, data: MovieFormData) => {
   if (data.image) {
     formData.append("image", data.image[0]);
   }
-
+ 
   const response = await fetch(url, {
     method: "PUT", cache: "no-store",
     // headers: {
@@ -115,6 +110,10 @@ export const getMovieById = async (url: string) => {
 };
 
 export const updateMovieLikedStatus = async (movieID: string, isLiked: boolean) => {
+  // const session = await getSession();
+  // if (!session) {
+  //   return;
+  // }
   // const {accessToken} = await getAccessToken();
   // console.log(accessToken)
   // const token = accessToken?.toString()

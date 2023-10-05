@@ -1,7 +1,7 @@
 "use client";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./modalDeleteUser.module.css";
-import { deleteUser } from "@/service/userReques.service";
+import { deleteUser } from "@/actions/users.actions";
 import { useRouter } from "next/navigation";
 import { useState, } from "react";
 

@@ -1,16 +1,20 @@
-import { NEXT_URL_MOVIES } from "@/global/serverUrl";
+"use server"
 import { MovieFormData, MoviesType } from "@/types/movies.types";
-import { getAccessToken } from '@auth0/nextjs-auth0';
+// import { getAccessToken, getSession } from "@auth0/nextjs-auth0";
 import { revalidateTag } from "next/cache";
 
-
-export const createMovie = async (endpoint: string, data: MovieFormData) => {
+export const createMovie = async (url: string, data: MovieFormData) => {
+  // const session = await getSession();
+  // if (!session?.user) {
+  //   return;
+  // }
   // const {accessToken} = await getAccessToken();
   const formData = new FormData();
   formData.append("title", data.title);
   formData.append("year", data.year.toString());
   formData.append("score", data.score.toString());
   formData.append("country", data.country);
+  formData.append("description", data.description);
   if (Array.isArray(data.genres)) {
     for (const genre of data.genres) {
       formData.append("genres", genre);
@@ -20,32 +24,34 @@ export const createMovie = async (endpoint: string, data: MovieFormData) => {
   if (data.image) {
     formData.append("image", data.image[0]);
   }
-  console.log(NEXT_URL_MOVIES)
 
-  // try {
-    const response = await fetch(`http://localhost:3005/movies/${endpoint}`, {
-      method: "POST",
-      // headers: {
-      //   authorization: `Bearer ${accessToken}`,
-      // },
-      body: formData,
-    });
-    console.log("formdata", formData);
-    if (!response.ok)  {
-      throw new Error("No response from the server");
-    }
-  // } catch (error) {
-  //   console.log(error);
-  // }
+  
+  const response = await fetch(url, {
+    method: "POST",cache: "no-store",
+    // headers: {
+    //   authorization: `Bearer ${accessToken}`,
+    // },
+    body: formData,
+  });
+  if(response.ok){
+    revalidateTag("getUserById")
+  }
+  if (!response.ok) {
+    throw new Error("No response from the server");
+  }
+ 
 };
 
 export const updateMovie = async (url: string, data: MovieFormData) => {
-  const {accessToken} = await getAccessToken();
+  
+  // const {accessToken} = await getAccessToken();
   const formData = new FormData();
   formData.append("title", data.title);
   formData.append("year", data.year.toString());
   formData.append("score", data.score.toString());
   formData.append("country", data.country);
+  formData.append("description", data.description);
+
   if (Array.isArray(data.genres)) {
     for (const genre of data.genres) {
       formData.append("genres", genre);
@@ -54,70 +60,82 @@ export const updateMovie = async (url: string, data: MovieFormData) => {
   if (data.image) {
     formData.append("image", data.image[0]);
   }
-
-  try {
-    const response = await fetch(url, {
-      method: "PUT",
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-      body: formData,
-    });
-    if (response.ok) {
-      console.log(response);
-    } else {
-      throw new Error("No response from the server");
-    }
-  } catch (error) {
-    console.log(error);
+ 
+  const response = await fetch(url, {
+    method: "PUT", cache: "no-store",
+    // headers: {
+    //   authorization: `Bearer ${accessToken}`,
+    // },
+    body: formData,
+  });
+  if(response.ok){
+    revalidateTag("getUserById")
+  }
+  if (!response.ok) {
+    throw new Error("No response from the server");
   }
 };
 
-export const deleteMovie = async (endpoint: string,) => {
-  const {accessToken} = await getAccessToken();
-
-  try {
-    const response = await fetch(`http://localhost:3005/movies/${endpoint}`, {
-      method: "DELETE",
-      headers: {
-        authorization: `Bearer ${accessToken}`,
-      },
-    });
-    console.log("funcionando");
-    if (response.ok) {
-      console.log(response);
-    } else {
-      throw new Error("No response at server");
-    }
-  } catch (error) {
-    console.log(error);
-  }
-};
-
-export const updateMovieLikedStatus = async ( movieID: string, isLiked: boolean ) => {
-    // const {accessToken} = await getAccessToken();
-    // console.log(accessToken)
-    // const token = accessToken?.toString()
+export const deleteMovie = async (endpoint: string) => {
+  // const session = await getSession();
+  // if (!session) {
+  //   return;
+  // }
+  // const {accessToken} = await getAccessToken();
   
-    try {
-      const response = await fetch(`http://localhost:3005/movies/like/${movieID}`, {
-        method: "PUT",
-        headers: {
-          // authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ isLiked }), // Send Liked status
-      });
-      
-      if (response.ok) {
-        console.log(response);
-        revalidateTag("")
-        return true; 
-      } else {
-        throw new Error("No response from the server");
-      }
-    } catch (error) {
-      console.log(error);
-      return false; 
-    }
-  };
+
+  const response = await fetch(endpoint, {
+    method: "DELETE", cache: "no-store",
+    // headers: {
+    //   authorization: `Bearer ${accessToken}`,
+    // },
+  });
+  if(response.ok){
+    revalidateTag("getUserById")
+  }
+
+  if (!response.ok) {
+    throw new Error("No response at server");
+  }
+};
+export const getMovieById = async (url: string) => {
+  // const session = await getSession();
+  // if (!session) {
+  //   return;
+  // }
+  // const token = await getAccessToken();
+
+  const response = await fetch(url, {
+    method: "GET",
+    // headers: {
+    //   authorization: `Bearer ${token.accessToken}`,
+    // },
+  });
+
+  return (await response.json()) as MoviesType;
+};
+
+export const updateMovieLikedStatus = async (movieID: string, isLiked: boolean) => {
+  // const session = await getSession();
+  // if (!session) {
+  //   return;
+  // }
+  // const {accessToken} = await getAccessToken();
+  // console.log(accessToken)
+  // const token = accessToken?.toString()
+
+  const response = await fetch(`http://localhost:3005/movies/like/${movieID}`, {
+    method: "PUT", cache: "no-store",
+    headers: {
+      // authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ isLiked }), // Send Liked status
+  });
+  if(response.ok){
+    revalidateTag("getUserById")
+  }
+  if (!response.ok) {
+    throw new Error("No response from the server");
+  }
+};

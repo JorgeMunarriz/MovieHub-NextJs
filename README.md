@@ -4,7 +4,7 @@
 Welcome to the MovieHub project, an application to keep track of the movies you are watching. This project is designed to help you learn and practice your backend development skills. Throughout the project, you will be adding functionalities and refactoring your code as you learn new concepts.
 
 
-![homepage_desktop.png](client/src/assets/img/desktop_image.png)
+![homepage_desktop.png](/public/assets/img/desktop_image.png)
 
 
 ## Responsive design
@@ -16,7 +16,7 @@ Welcome to the MovieHub project, an application to keep track of the movies you 
 
 MovieHub is an application that allows you to manage a list of movies. Each movie in the application has a name, a image, a score, and a genre. You will be able to perform CRUD (Create, Read, Update, Delete) operations on these movies.
 
-The frontend of the application is built with React + Vite + Typescript. 
+The frontend of the application is built with Next React + Typescript. 
 You can show it at https://github.com/JorgeMunarriz/MovieHub
 
 In the user interface, you will be able to view all added movies in a list. Each movie will be displayed with its name, poster, score, and genre. There will be an option to add new movies through a modal or a new page, where you can enter the movie's name, upload a poster image, assign a score, and select a genre. You will also have the option to update the data of existing movies or remove them from the list.

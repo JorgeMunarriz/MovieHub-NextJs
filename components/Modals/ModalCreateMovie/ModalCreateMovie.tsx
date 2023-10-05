@@ -1,22 +1,19 @@
 "use client";
 
 import { NEXT_URL_MOVIES } from "@/global/serverUrl";
-import { createMovie } from "@/service/moviesRequest.service";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import "./modalCreateMovie.css"
-import { revalidateTag, revalidatePath } from 'next/cache';
-import { useRouter } from 'next/navigation';
-
+import "./modalCreateMovie.css";
+import { useRouter } from "next/navigation";
+import { createMovie } from "@/service/moviesRequest.service";
 
 const ModalCreateMovie = () => {
   const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useUser();
   const { register, handleSubmit } = useForm();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const router = useRouter()
-  
+  const router = useRouter();
 
   const toggleModal = () => {
     setIsOpen(!modalIsOpen);
@@ -27,10 +24,10 @@ const ModalCreateMovie = () => {
         ...data,
         genres: data.genres.split(",").map((genre: string) => genre.trim()),
       };
-      const urlEndpont = `${user?.email}`;
-      console.log(movieData)
-      createMovie(urlEndpont, movieData);
-      router.refresh()
+      // const urlEndpont = `${user?.email}`;
+
+      createMovie(`${NEXT_URL_MOVIES}/${user?.email}`, movieData);
+      router.refresh();
       setIsOpen(!modalIsOpen);
     } else {
       console.error("The data does not have the correct structure.");
@@ -104,7 +101,9 @@ const ModalCreateMovie = () => {
                 Add Movie
               </button>
             </form>
-            <button className="modal__container-content-button" onClick={toggleModal}>Close Modal</button>
+            <button className="modal__container-content-button" onClick={toggleModal}>
+              Close Modal
+            </button>
           </div>
         </div>
       )}

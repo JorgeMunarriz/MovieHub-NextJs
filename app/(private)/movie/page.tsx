@@ -1,11 +1,13 @@
 import Cards from "@/components/Cards/Cards";
-import { getDataApiMovies, getDataApiPublicMovies } from "@/service/dataApiRequest.service";
+import { getDataApiMovies} from "@/service/dataApiRequest.service";
 import React, { Suspense } from "react";
 import styles from "./moviePage.module.css";
 import { getSession } from "@auth0/nextjs-auth0";
 import { Metadata } from "next";
 import SkeletonCards from "@/components/Skeleton/SkeletonCards";
 import Redirect from "@/components/Redirect/Redirect";
+import { getUserByID } from "@/service/userReques.service";
+import { MoviesType } from "@/types/movies.types";
 ("@/global/serverUrl");
 
 export const metadata: Metadata = {
@@ -18,7 +20,9 @@ export const metadata: Metadata = {
 
 const Movie = async () => {
   const session = await getSession();
-  const movies = await getDataApiMovies();
+
+  const user = await getUserByID(session?.user.email);
+  const movies = user.movies
 
   if (!session) {
     return <Redirect to="/" time={1000} />;
@@ -40,8 +44,8 @@ const Movie = async () => {
           <h2 className={styles.moviesPage__header_title}>{session?.user.name}'s Movies</h2>
         </div>
         <div className={styles.moviesPage__cardContainer}>
-          {movies?.map((movie) => (
-            <Suspense fallback={<SkeletonCards />}>
+          {movies?.map((movie: MoviesType) => (
+            <Suspense key={movie.id} fallback={<SkeletonCards />}>
               <Cards
                 id={movie.id}
                 title={movie.title}

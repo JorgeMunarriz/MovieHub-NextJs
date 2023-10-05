@@ -2,14 +2,11 @@
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { MoviesType } from "@/types/movies.types";
-import styled from "styled-components";
-import { getMovieById, updateMovie } from "@/service/moviesRequest.service";
+import { getMovieById, updateMovie } from "@/actions/movies.actions";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import "./modalUpdateMovie.css";
-import { useRouter } from 'next/navigation';
+import { useRouter } from "next/navigation";
 import { NEXT_URL_MOVIES } from "@/global/serverUrl";
-
-
 
 const ModalUpdateMovie = ({ id, title, score, year, country, genresArray, image, genres, description }: MoviesType) => {
   const [modalIsOpen, setIsOpen] = useState(false);
@@ -19,14 +16,12 @@ const ModalUpdateMovie = ({ id, title, score, year, country, genresArray, image,
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>();
   const { register, handleSubmit } = useForm<MoviesType>();
-  const router = useRouter()
-  
+  const router = useRouter();
 
   useEffect(() => {
     if (modalIsOpen) {
       const url = `${NEXT_URL_MOVIES}/${id}`;
       getMovieById(url).then((movie) => {
-        console.log(movie);
         if (movie) {
           setMovieData({
             title: movie.title,
@@ -36,10 +31,11 @@ const ModalUpdateMovie = ({ id, title, score, year, country, genresArray, image,
             genresArray: movie.genresArray,
             image: movie.image,
             genres: movie.genres,
-            description: movie.description
+            description: movie.description,
           });
           setImagePreview(movie.imageUrl);
-        } else {
+        }
+        if (!movie) {
           console.log("Movie not found");
         }
         return movie;
@@ -58,7 +54,6 @@ const ModalUpdateMovie = ({ id, title, score, year, country, genresArray, image,
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onsubmit = handleSubmit((data: any) => {
     const url = `${NEXT_URL_MOVIES}/${id}`;
     const updatedData = {
@@ -66,7 +61,7 @@ const ModalUpdateMovie = ({ id, title, score, year, country, genresArray, image,
       genres: data.genres.split(",").map((genre: string) => genre.trim()),
     };
     updateMovie(url, updatedData);
-    router.refresh()
+    router.refresh();
     setIsOpen(!modalIsOpen);
   });
 
@@ -152,7 +147,7 @@ const ModalUpdateMovie = ({ id, title, score, year, country, genresArray, image,
                 <label className="form__modal-div-label" htmlFor="formModalDescription">
                   Movie's Description
                 </label>
-                <input className="form__modal-div-input" type="text" id="formModalDescription" placeholder="Description" {...register("description")} />
+                <textarea className="form__modal-div-textarea" id="formModalDescription" placeholder="Description" {...register("description")} />
               </div>
               <div className="form__modal-div-img">
                 {selectedFile ? (
@@ -169,7 +164,9 @@ const ModalUpdateMovie = ({ id, title, score, year, country, genresArray, image,
                 Update Movie
               </button>
             </form>
-            <button className="modal__container-content-button" onClick={toggleModal}>Close Modal</button>
+            <button className="modal__container-content-button" onClick={toggleModal}>
+              Close Modal
+            </button>
           </div>
         </div>
       )}

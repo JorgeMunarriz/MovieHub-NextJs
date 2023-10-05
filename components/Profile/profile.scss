@@ -30,5 +30,11 @@
       font-size: 1.5rem;
       color: rgba(255, 255, 255, 0.4);
     }
+    &__buttons{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    }
   }
 }

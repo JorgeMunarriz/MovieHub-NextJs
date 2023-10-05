@@ -6,13 +6,25 @@ import LikeButton from "@/components/Buttons/LikeButton/LikeButton";
 import { getSession } from "@auth0/nextjs-auth0";
 import Redirect from "@/components/Redirect/Redirect";
 import ModalUpdateMovie from "@/components/Modals/ModalUpdateMovie/ModalUpdateMovie";
-import ModalDeleteMovie from "@/components/ModalDeleteMovie/ModalDeleteMovie";
+import ModalDeleteMovie from "@/components/Modals/ModalDeleteMovie/ModalDeleteMovie";
+import { Metadata } from "next";
+import { title } from "process";
 
 type Props = {
   params: {
     movieID: string;
   };
 };
+
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { params } = props;
+  const url = `${NEXT_URL_MOVIES}/${params.movieID}`;
+  const movieData = await getMovieById(url);
+  return {
+    title: `${movieData.title} Page`,
+    description: `${movieData.title} : Description: ${movieData.description}`,
+  };
+}
 
 const MoviesPageDetail = async ({ params }: Props) => {
   const session = await getSession();

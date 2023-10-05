@@ -1,6 +1,6 @@
 "use client";
 import { useState, Suspense } from "react";
-import { deleteMovie} from "@/service/moviesRequest.service";
+import { deleteMovie} from "@/actions/movies.actions";
 import { MoviesType } from "@/types/movies.types";
 import { useUser } from "@auth0/nextjs-auth0/client";
 import styles from "./modalDeleteMovie.module.css";

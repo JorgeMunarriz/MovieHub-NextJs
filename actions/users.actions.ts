@@ -1,3 +1,5 @@
+"use server"
+
 import { NEXT_URL_USERS } from "@/global/serverUrl";
 import { MoviesType } from "@/types/movies.types";
 import { getAccessToken } from "@auth0/nextjs-auth0";

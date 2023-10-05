@@ -10,8 +10,6 @@ async function Home() {
   
 
   const movies = await getDataApiPublicMovies();
-  const token = await getAccessToken();
-  console.log(token.accessToken)
   return (
     <div className={styles.homePage}>
       <div className={styles.homePage__header}>

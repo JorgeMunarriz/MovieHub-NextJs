@@ -13,8 +13,7 @@ type Props = {
 
 const ButtonsModalDelete = async ({id, className, children}: Props) => {
     const [modalIsOpen, setIsOpen] = useState(false);
-    const session = await getSession();
-    console.log(session)
+
 
     const url = `${NEXT_URL_MOVIES}/${id}`;
   

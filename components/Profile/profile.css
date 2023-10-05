@@ -31,4 +31,10 @@
 .profilePage__container__paragraph {
   font-size: 1.5rem;
   color: rgba(255, 255, 255, 0.4);
+}
+.profilePage__container__buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
 }/*# sourceMappingURL=profile.css.map */

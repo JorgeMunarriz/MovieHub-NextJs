@@ -3,6 +3,8 @@ import LogOutButton from "@/components/Buttons/LogOutButton/LogOutButton";
 import ModalCreateMovie from "@/components/Modals/ModalCreateMovie/ModalCreateMovie";
 import styles from "./header.module.css";
 import { getSession } from "@auth0/nextjs-auth0";
+import NavigationButtonBack from "@/components/Buttons/NavigationButton/NavigationButtonBack";
+import NavigationButtonForward from "@/components/Buttons/NavigationButton/NavigationButtonForward";
 
 const Header = async () => {
   const session = await getSession();
@@ -15,6 +17,8 @@ const Header = async () => {
             MovieHub
           </Link>
         </h1>
+        <NavigationButtonBack/>
+        <NavigationButtonForward/>
       </div>
       <div className={styles.header__right}>
         {session ? (
