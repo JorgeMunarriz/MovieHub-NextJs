@@ -4,6 +4,7 @@ import { MoviesType } from "@/types/movies.types";
  const getDataApiPublic = async () => {  
     try {
       const response = await fetch(`${NEXT_URL}publicmovies`);
+      
       return await response.json() as MoviesType[];
       
       

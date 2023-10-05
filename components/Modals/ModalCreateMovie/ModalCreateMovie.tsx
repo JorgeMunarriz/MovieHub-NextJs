@@ -9,6 +9,7 @@ import { useRouter } from "next/navigation";
 import { createMovie } from "@/service/moviesRequest.service";
 
 const ModalCreateMovie = () => {
+  
   const [modalIsOpen, setIsOpen] = useState(false);
   const { user } = useUser();
   const { register, handleSubmit } = useForm();

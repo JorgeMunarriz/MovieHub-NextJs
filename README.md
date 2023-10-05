@@ -4,13 +4,17 @@
 Welcome to the MovieHub project, an application to keep track of the movies you are watching. This project is designed to help you learn and practice your backend development skills. Throughout the project, you will be adding functionalities and refactoring your code as you learn new concepts.
 
 
-![homepage_desktop.png](/public/assets/img/desktop_image.png)
+![Responsive_design.png](/public/assets/img/desktop-main.png)
 
 
 ## Responsive design
-![Responsive_design.png](client/src/assets/img/Responsive_design.png)
+![homepage_desktop.png](/public/assets/img/mobile.png)
 
-![desktop_mac_image.png](client/src/assets/img/desktop_mac_image.png)
+![desktop_mac_image.png](/public/assets/img/pc-modal.png)
+
+![React-component.png](/public/assets/img/React-component.png)
+
+
 
 ## Project Description
 
